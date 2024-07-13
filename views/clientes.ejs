@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Clientes</title>
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/datatables/datatables.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Clientes</h1>
+    <form action="/clientes/create" method="POST">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" required>
+      </div>
+      <div class="mb-3">
+        <label for="apellido" class="form-label">Apellido</label>
+        <input type="text" class="form-control" id="apellido" name="apellido" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Crear Cliente</button>
+    </form>
+    <hr>
+    <table id="clientesTable" class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% clientes.forEach(cliente => { %>
+        <tr>
+          <td><%= cliente.id %></td>
+          <td><%= cliente.nombre %></td>
+          <td><%= cliente.apellido %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/datatables/datatables.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#clientesTable').DataTable();
+    });
+  </script>
+</body>
+</html>
